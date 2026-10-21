@@ -27,7 +27,7 @@ backend:
   aux:
     difflm_args: "--attention-mask-type no_mask --mask-token ${backend.megatron.aux.mask_token_id} --base-model vanilla --model-running-mode difflm-noshift --difflm-varilen-prob 0.01 --wandb-exp-name ${job.name}"
   megatron:
-    wandb_project: "autoresearch-dlm"
+    wandb_project: "scaling_laws"
 
 slurm:
   env:
@@ -35,11 +35,11 @@ slurm:
     # 2.6 that rejects Megatron's own checkpoints (WeightsUnpickler: megatron.core.enums.ModelType)
     TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD: "1"
   sbatch:
-    _non_strict: true
+#    _non_strict: true
     nodes: 1
     ntasks: 1
     gpus_per_node: 1
     cpus_per_task: 16
     exclusive: false
-    partition: gpu_h100
-    time: "00:59:00"
+    partition: boost_usr_prod
+    time: "00:10:00"
