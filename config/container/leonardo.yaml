@@ -1,5 +1,5 @@
 class_name: Container
-image: /leonardo_work/OELLM_prod2026/container_images/nemo_25.11.01.sif
+image: /leonardo_work/PHD_dallari/containers/megatronDLM.sif
 runtime: singularity
 bind: ["/leonardo_scratch", "/leonardo", "/leonardo_work/"]
 env:
