@@ -45,7 +45,7 @@ make_vocab_size_divisible_by: 128
 data_path:
   - /leonardo_work/PHD_dallari/fineweb-10BT_text_document
 split: "998,2,0"
-data_cache_path: /leonardo_work/PHD_dallari/cache
+data_cache_path: /leonardo_work/PHD_dallari/cache/qwen3_20m
 
 # torch_dist saving fails with MegaDLMs' dist_checkpointing on the torch 2.13 container
 # ("_write_item() missing ... 'storage_key' and 'serialization_format'"); plain torch format

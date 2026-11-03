@@ -21,7 +21,8 @@ seq_length: 4097
 max_position_embeddings: 4097
 
 train_iters: 9536
-micro_batch_size: 8
+#micro_batch_size: 8
+micro_batch_size: 4 #per runnare in singola GPU
 lr: 6.0e-4
 
 # Disable fusions that conflict with diffusion or require TE >= 1.4
@@ -34,11 +35,11 @@ aux:
   model_name: "megadlm-qwen3-0.1b-ne"
   mask_token_id: 147
 
-tokenizer_type: SentencePieceTokenizer
-tokenizer_model: /projects/0/prjs2013/oellm/tokenizer/oellm-tokenizer-128k-v2/tokenizer.model
+tokenizer_type: HuggingFaceTokenizer
+tokenizer_model: /leonardo_work/PHD_dallari/tokenizers/tokenizer-256k   #va modificato
 
 data_path:
-  - /projects/0/prjs2013/preprocessed/oellm-tokenizer-128k-v2/HPLT/HPLT2.0_cleaned/eng_Latn_67/eng_Latn_67_text_document
+  - /leonardo_work/PHD_dallari/fineweb-10BT_text_document
 
 save: ${job.base_output_dir}/checkpoints
 wandb_save_dir: ${job.base_output_dir}/wandb
