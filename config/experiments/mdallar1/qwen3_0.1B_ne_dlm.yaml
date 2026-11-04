@@ -4,8 +4,8 @@
 
 defaults:
   - /backend: megadlm_torchrun
-  - /container: snellius
-  - /slurm: snellius
+  - /container: leonardo
+  - /slurm: leonardo
   - /job: default
   - /sweep: none
   - override /backend/megatron: dllm/qwen3_0.1B_ne_dlm
@@ -22,15 +22,20 @@ job:
 backend:
   # Same MegaDLMs flags as qwen3_125M_dlm (see that file for what each does).
   aux:
-    difflm_args: "--attention-mask-type no_mask --mask-token ${backend.megatron.aux.mask_token_id} --base-model vanilla --model-running-mode difflm-noshift --difflm-varilen-prob 0.01 --mask-prob 0.15 --wandb-exp-name ${job.name}"
+    difflm_args: "--attention-mask-type no_mask --mask-token ${backend.megatron.aux.mask_token_id} --base-model vanilla --model-running-mode difflm-noshift --difflm-varilen-prob 0.01 --mask-prob 0.15 --wandb-exp-name ${job.name} --wandb-mode offline"
   megatron:
     global_batch_size: 512
-    wandb_project: "hplt-megadlm-baseline"
-    data_cache_path: "${job.base_output_dir}/data_cache"
+    wandb_project: "scaling_laws"
+    data_cache_path: /leonardo_work/PHD_dallari/cache
 
 slurm:
   sbatch:
-    _non_strict: true
+#    _non_strict: true
     nodes: 1
-    partition: gpu_h100
-    time: "15:00:00"
+    ntasks: 1
+    gpus_per_node: 1
+    exclusive: true
+    partition: boost_usr_prod
+    time: "00:10:00"
+    qos: boost_qos_dbg
+    account: PHD_dallari
