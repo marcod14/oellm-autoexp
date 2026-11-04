@@ -69,9 +69,10 @@ eval_interval: 10
 
 # ── Data ────────────────────────────────────────────────────────────────────────
 tokenizer_type: HuggingFaceTokenizer
-tokenizer_model: /e/scratch/e-sta-openeurollm/harmsen1/hf_home/hub/models--openai-community--gpt2/snapshots/607a30d783dfa663caf39e06633721c8d4cfcd7e
+tokenizer_model: /leonardo_work/PHD_dallari/tokenizers/tokenizer-256k   #va modificato
 data_path:
-  - /e/project1/e-sta-openeurollm/harmsen1/datasets/FineWeb/fineweb-10BT_text_document
+  - /leonardo_work/PHD_dallari/fineweb-10BT_text_document
+data_cache_path: /leonardo_work/PHD_dallari/cache
 num_workers: 8
 dataloader_type: cyclic
 
@@ -92,7 +93,7 @@ log_timers_to_tensorboard: true
 log_validation_ppl_to_tensorboard: true
 log_memory_to_tensorboard: true
 log_progress: true
-wandb_project: "megadlm-jupiter"
+wandb_project: "scaling"
 wandb_save_dir: "${job.base_output_dir}/wandb"
 
 aux:
